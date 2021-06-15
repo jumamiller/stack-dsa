@@ -1,50 +1,39 @@
 package com.bikebuka.portal;
 
-public class StackImplementation {
-    private int[] arr;
-    private int top;
-    private int capacity;
+import java.util.ArrayList;
+
+public class StackImplementation<T> {
+    private final ArrayList<T> arr;
 
     //creating stack
-    StackImplementation(int size){
-        arr= new int[size];
-        capacity = size;
-        top=-1;
+    StackImplementation() {
+        arr = new ArrayList<>();
     }
+
     // Add elements into stack
-    public void push(int x){
-        if(isFull()){
-            System.out.println("OverFlow\nProgram Terminated\n");
-            System.exit(1);
-        }
+    public void push(T x) {
         System.out.println("Inserting " + x);
-        arr[++top]=x;
+        System.out.println(x);
+        arr.add(x);
     }
+
     // Remove element from stack
-    public int pop() {
+    public T pop() {
         if (isEmpty()) {
             System.out.println("STACK EMPTY");
             System.exit(1);
         }
-        return arr[top--];
+        return arr.get((arr.size() - 1));
     }
+
     public void printStack() {
-        for (int i = 0; i <= top; i++) {
-            System.out.println(arr[i]);
+        for (int i = 0; i <= arr.size()-1; i++) {
+            System.out.println(arr.get(i));
         }
     }
 
-    // Check if the stack is full
-    public boolean isFull(){
-     return top == capacity-1;
-    }
     // Check if the stack is empty
     public Boolean isEmpty() {
-        return top == -1;
+        return arr.size() == 0;
     }
-    // Utility function to return the size of the stack
-    public int size() {
-        return top + 1;
-    }
-
 }
